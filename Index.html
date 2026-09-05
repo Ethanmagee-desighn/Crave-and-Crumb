@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Crave & Crumb</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f7f1e8;
+      color: #2b1710;
+    }
+
+    /* NAVBAR */
+
+    nav {
+      background: #2b1710;
+      color: white;
+      padding: 18px 7%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .logo span {
+      color: #d9a066;
+    }
+
+    .basket-button {
+      background: #d9a066;
+      border: none;
+      color: #2b1710;
+      padding: 11px 18px;
+      border-radius: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .basket-button:hover {
+      transform: scale(1.05);
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 520px;
+      background:
+        linear-gradient(rgba(43, 23, 16, 0.78), rgba(43, 23, 16, 0.78)),
+        url("https://images.unsplash.com/photo-1499636136210-6f4ee915583e?auto=format&fit=crop&w=1600&q=80")
+        center/cover;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      padding: 40px 20px;
+    }
+
+    .hero-content {
+      max-width: 750px;
+    }
+
+    .hero h1 {
+      font-size: clamp(55px, 9vw, 100px);
+      line-height: 0.9;
+      margin-bottom: 25px;
+      font-weight: 900;
+    }
+
+    .hero h1 span {
+      color: #d9a066;
+    }
+
+    .hero p {
+      font-size: 20px;
+      margin-bottom: 30px;
+      color: #f4e8da;
+    }
+
+    .hero-button {
+      display: inline-block;
+      background: #d9a066;
+      color: #2b1710;
+      padding: 15px 28px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 800;
+      transition: 0.2s;
+    }
+
+    .hero-button:hover {
+      transform: translateY(-3px);
+    }
+
+    /* PRODUCTS */
+
+    .shop {
+      padding: 70px 7%;
+      max-width: 1400px;
+      margin: auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .section-title h2 {
+      font-size: 42px;
+      margin-bottom: 10px;
+    }
+
+    .section-title p {
+      color: #765c4e;
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 25px;
+    }
+
+    .product {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(43, 23, 16, 0.1);
+      transition: 0.25s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product:hover {
+      transform: translateY(-7px);
+    }
+
+    .product-image {
+      height: 230px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .cookie-one {
+      background-image: url("https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=800&q=80");
+    }
+
+    .cookie-two {
+      background-image: url("https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=800&q=80");
+    }
+
+    .cookie-three {
+      background-image: url("https://images.unsplash.com/photo-1590080875515-8a3a8dc5735e?auto=format&fit=crop&w=800&q=80");
+    }
+
+    .cookie-four {
+      background-image: url("https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=800&q=80");
+    }
+
+    .product-info {
+      padding: 22px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-info h3 {
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .product-info p {
+      color: #765c4e;
+      line-height: 1.5;
+      margin-bottom: 18px;
+      flex-grow: 1;
+    }
+
+    .price {
+      font-size: 21px;
+      font-weight: 800;
+      margin-bottom: 15px;
+    }
+
+    .add-button {
+      width: 100%;
+      padding: 13px;
+      border: none;
+      background: #2b1710;
+      color: white;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .add-button:hover {
+      background: #4a281d;
+    }
+
+    /* ABOUT */
+
+    .about {
+      background: #2b1710;
+      color: white;
+      text-align: center;
+      padding: 75px 20px;
+    }
+
+    .about h2 {
+      font-size: 40px;
+      margin-bottom: 18px;
+    }
+
+    .about p {
+      max-width: 650px;
+      margin: auto;
+      color: #e5d4c6;
+      line-height: 1.7;
+      font-size: 17px;
+    }
+
+    /* BASKET */
+
+    .basket-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 200;
+      display: none;
+    }
+
+    .basket-overlay.active {
+      display: block;
+    }
+
+    .basket {
+      position: fixed;
+      right: 0;
+      top: 0;
+      width: min(430px, 100%);
+      height: 100%;
+      background: #fffaf5;
+      z-index: 300;
+      transform: translateX(100%);
+      transition: 0.3s;
+      padding: 25px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .basket.active {
+      transform: translateX(0);
+    }
+
+    .basket-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    .basket-header h2 {
+      font-size: 28px;
+    }
+
+    .close {
+      border: none;
+      background: none;
+      font-size: 30px;
+      cursor: pointer;
+    }
+
+    #basketItems {
+      flex-grow: 1;
+      overflow-y: auto;
+    }
+
+    .basket-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      padding: 15px 0;
+      border-bottom: 1px solid #eaded4;
+    }
+
+    .basket-item h4 {
+      margin-bottom: 5px;
+    }
+
+    .basket-item small {
+      color: #765c4e;
+    }
+
+    .quantity {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .quantity button {
+      border: none;
+      background: #e8d5c4;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .basket-footer {
+      border-top: 2px solid #eaded4;
+      padding-top: 20px;
+    }
+
+    .total {
+      display: flex;
+      justify-content: space-between;
+      font-size: 23px;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    .checkout {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      background: #2b1710;
+      color: white;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .empty {
+      text-align: center;
+      margin-top: 80px;
+      color: #765c4e;
+    }
+
+    /* FOOTER */
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      background: #1c0e0a;
+      color: #cbb8aa;
+      font-size: 14px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 1000px) {
+      .products {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .products {
+        grid-template-columns: 1fr;
+      }
+
+      .shop {
+        padding: 50px 20px;
+      }
+
+      .hero {
+        min-height: 480px;
+      }
+
+      .section-title h2 {
+        font-size: 34px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+
+  <nav>
+    <div class="logo">
+      Crave <span>&</span> Crumb
+    </div>
+
+    <button class="basket-button" onclick="openBasket()">
+      🛒 Basket (<span id="basketCount">0</span>)
+    </button>
+  </nav>
+
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <h1>
+        Crave <span>&</span> Crumb
+      </h1>
+
+      <p>
+        Big cookies. Bigger cravings.
+      </p>
+
+      <a href="#shop" class="hero-button">
+        Shop Cookies
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- SHOP -->
+
+  <section class="shop" id="shop">
+
+    <div class="section-title">
+
+      <h2>Our Cookies</h2>
+
+      <p>
+        Freshly baked. Seriously loaded.
+      </p>
+
+    </div>
+
+
+    <div class="products">
+
+
+      <!-- COOKIE 1 -->
+
+      <div class="product">
+
+        <div class="product-image cookie-one"></div>
+
+        <div class="product-info">
+
+          <h3>Classic Choc Chip</h3>
+
+          <p>
+            Our classic chewy cookie packed with chunky milk chocolate.
+            Simple. Gooey. Perfect.
+          </p>
+
+          <div class="price">
+            R12.00
+          </div>
+
+          <button class="add-button"
+            onclick="addToBasket('Classic Choc Chip', 12)">
+            Add to Basket
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- COOKIE 2 -->
+
+      <div class="product">
+
+        <div class="product-image cookie-two"></div>
+
+        <div class="product-info">
+
+          <h3>Brownie Bomb</h3>
+
+          <p>
+            A chunky chocolate-chip cookie hiding a rich, fudgy
+            chocolate brownie centre.
+          </p>
+
+          <div class="price">
+            R15.00
+          </div>
+
+          <button class="add-button"
+            onclick="addToBasket('Brownie Bomb', 15)">
+            Add to Basket
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- COOKIE 3 -->
+
+      <div class="product">
+
+        <div class="product-image cookie-three"></div>
+
+        <div class="product-info">
+
+          <h3>Death by Chocolate</h3>
+
+          <p>
+            A rich chocolate cookie absolutely loaded with chocolate.
+            For serious chocolate lovers.
+          </p>
+
+          <div class="price">
+            R15.00
+          </div>
+
+          <button class="add-button"
+            onclick="addToBasket('Death by Chocolate', 15)">
+            Add to Basket
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- COOKIE 4 -->
+
+      <div class="product">
+
+        <div class="product-image cookie-four"></div>
+
+        <div class="product-info">
+
+          <h3>Choc-Dipped Dough Bites</h3>
+
+          <p>
+            Soft cookie-dough bites wrapped in a delicious chocolate
+            coating. Small bites. Big flavour.
+          </p>
+
+          <div class="price">
+            R10.00
+          </div>
+
+          <button class="add-button"
+            onclick="addToBasket('Choc-Dipped Dough Bites', 10)">
+            Add to Basket
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ABOUT -->
+
+  <section class="about">
+
+    <h2>Made to be craved.</h2>
+
+    <p>
+      At Crave & Crumb, we believe cookies should never be boring.
+      From classic chocolate-chip cookies to fudgy brownie-filled
+      creations, every bite is made for one thing — satisfying that
+      craving.
+    </p>
+
+  </section>
+
+
+  <!-- BASKET OVERLAY -->
+
+  <div class="basket-overlay" id="overlay" onclick="closeBasket()"></div>
+
+
+  <!-- BASKET -->
+
+  <div class="basket" id="basket">
+
+    <div class="basket-header">
+
+      <h2>Your Basket</h2>
+
+      <button class="close" onclick="closeBasket()">
+        ×
+      </button>
+
+    </div>
+
+
+    <div id="basketItems">
+
+      <div class="empty">
+        Your basket is empty 🍪
+      </div>
+
+    </div>
+
+
+    <div class="basket-footer">
+
+      <div class="total">
+
+        <span>Total</span>
+
+        <span>
+          R<span id="basketTotal">0.00</span>
+        </span>
+
+      </div>
+
+      <button class="checkout" onclick="checkout()">
+        Proceed to Checkout
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+    © 2026 Crave & Crumb — Baked with love & chocolate.
+  </footer>
+
+
+  <script>
+
+    let basket = [];
+
+
+    function addToBasket(name, price) {
+
+      const existing = basket.find(item => item.name === name);
+
+      if (existing) {
+
+        existing.quantity++;
+
+      } else {
+
+        basket.push({
+          name: name,
+          price: price,
+          quantity: 1
+        });
+
+      }
+
+      updateBasket();
+
+    }
+
+
+    function changeQuantity(name, change) {
+
+      const item = basket.find(item => item.name === name);
+
+      if (!item) return;
+
+      item.quantity += change;
+
+      if (item.quantity <= 0) {
+
+        basket = basket.filter(item => item.name !== name);
+
+      }
+
+      updateBasket();
+
+    }
+
+
+    function updateBasket() {
+
+      const basketItems = document.getElementById("basketItems");
+
+      const count = document.getElementById("basketCount");
+
+      const totalElement = document.getElementById("basketTotal");
+
+
+      let total = 0;
+
+      let itemCount = 0;
+
+
+      basket.forEach(item => {
+
+        total += item.price * item.quantity;
+
+        itemCount += item.quantity;
+
+      });
+
+
+      count.textContent = itemCount;
+
+      totalElement.textContent = total.toFixed(2);
+
+
+      if (basket.length === 0) {
+
+        basketItems.innerHTML = `
+          <div class="empty">
+            Your basket is empty 🍪
+          </div>
+        `;
+
+        return;
+
+      }
+
+
+      basketItems.innerHTML = "";
+
+
+      basket.forEach(item => {
+
+        basketItems.innerHTML += `
+
+          <div class="basket-item">
+
+            <div>
+
+              <h4>${item.name}</h4>
+
+              <small>
+                R${item.price.toFixed(2)} each
+              </small>
+
+            </div>
+
+
+            <div class="quantity">
+
+              <button
+                onclick="changeQuantity('${item.name}', -1)">
+                −
+              </button>
+
+              <strong>
+                ${item.quantity}
+              </strong>
+
+              <button
+                onclick="changeQuantity('${item.name}', 1)">
+                +
+              </button>
+
+            </div>
+
+          </div>
+
+        `;
+
+      });
+
+    }
+
+
+    function openBasket() {
+
+      document.getElementById("basket").classList.add("active");
+
+      document.getElementById("overlay").classList.add("active");
+
+    }
+
+
+    function closeBasket() {
+
+      document.getElementById("basket").classList.remove("active");
+
+      document.getElementById("overlay").classList.remove("active");
+
+    }
+
+
+    function checkout() {
+
+      if (basket.length === 0) {
+
+        alert("Your basket is empty!");
+
+        return;
+
+      }
+
+
+      let message = "Order from Crave & Crumb:%0A%0A";
+
+      let total = 0;
+
+
+      basket.forEach(item => {
+
+        const itemTotal = item.price * item.quantity;
+
+        total += itemTotal;
+
+        message +=
+          `${item.quantity}x ${item.name} - R${itemTotal.toFixed(2)}%0A`;
+
+      });
+
+
+      message += `%0ATotal: R${total.toFixed(2)}`;
+
+
+      alert(
+        "Your order is ready!%0A%0A" +
+        "You can connect this button to WhatsApp, Yoco, PayFast, or another payment system later."
+      );
+
+    }
+
+  </script>
+
+</body>
+</html>
